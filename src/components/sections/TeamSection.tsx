@@ -1,107 +1,210 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Linkedin, Twitter } from "lucide-react";
 
 const TeamSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   const team = [
     {
       name: "Dr. Priya Sharma",
       role: "Founder & CEO",
-      mission: "Education should empower, not overwhelm. Every student deserves clarity.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face",
+      mission:
+        "Education should empower, not overwhelm. Every student deserves clarity.",
+      image:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face",
     },
     {
       name: "Rajesh Kumar",
       role: "Chief Technology Officer",
-      mission: "Technology is meaningful only when it genuinely helps people learn better.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      mission:
+        "Technology is meaningful only when it genuinely helps people learn better.",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     },
     {
       name: "Ananya Iyer",
       role: "Head of Education",
-      mission: "The best study tools are invisible—they just help students succeed.",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
+      mission:
+        "The best study tools are invisible—they just help students succeed.",
+      image:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
     },
     {
       name: "Vikram Patel",
       role: "Head of Partnerships",
-      mission: "Real impact happens when schools, parents, and students work together.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      mission:
+        "Real impact happens when schools, parents, and students work together.",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section id="team" className="section-padding bg-muted/30" ref={ref}>
-      <div className="section-container">
+    <section
+      id="team"
+      ref={sectionRef}
+      className="section-padding bg-muted/30 relative overflow-hidden"
+    >
+      {/* Parallax Background */}
+      <motion.div
+        style={{ y: backgroundY }}
+        className="absolute inset-0 pointer-events-none"
+      >
+        <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-primary/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl" />
+      </motion.div>
+
+      <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="text-primary font-medium text-sm uppercase tracking-wide">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block text-primary font-medium text-sm uppercase tracking-wide"
+          >
             Our Team
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-3 mb-6">
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-3 mb-6"
+          >
             The People Behind Edu Improvement AI
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Educators, technologists, and parents who believe in the power of 
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-muted-foreground leading-relaxed"
+          >
+            Educators, technologists, and parents who believe in the power of
             transparent, supportive learning.
-          </p>
+          </motion.p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {team.map((member, index) => (
             <motion.div
               key={member.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={cardVariants}
+              whileHover={{ y: -10 }}
               className="group text-center"
             >
-              <div className="relative mb-6 overflow-hidden rounded-2xl">
-                <img
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className="relative mb-6 overflow-hidden rounded-2xl"
+              >
+                <motion.img
                   src={member.image}
                   alt={member.name}
-                  className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full aspect-square object-cover"
+                  initial={{ scale: 1.1 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
                 />
                 {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent flex items-end justify-center pb-4"
+                >
                   <div className="flex gap-3">
-                    <a
+                    <motion.a
                       href="#"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
                       className="w-10 h-10 bg-primary-foreground/20 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary-foreground/30 transition-colors"
                       aria-label={`${member.name}'s LinkedIn`}
                     >
                       <Linkedin size={18} />
-                    </a>
-                    <a
+                    </motion.a>
+                    <motion.a
                       href="#"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
                       className="w-10 h-10 bg-primary-foreground/20 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary-foreground/30 transition-colors"
                       aria-label={`${member.name}'s Twitter`}
                     >
                       <Twitter size={18} />
-                    </a>
+                    </motion.a>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
-              <h3 className="text-xl font-heading text-foreground mb-1">
+              <motion.h3
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                className="text-xl font-heading text-foreground mb-1 group-hover:text-primary transition-colors"
+              >
                 {member.name}
-              </h3>
-              <p className="text-primary font-medium text-sm mb-3">
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.35 + index * 0.1 }}
+                className="text-primary font-medium text-sm mb-3"
+              >
                 {member.role}
-              </p>
-              <p className="text-muted-foreground text-sm italic leading-relaxed">
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+                className="text-muted-foreground text-sm italic leading-relaxed"
+              >
                 "{member.mission}"
-              </p>
+              </motion.p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
