@@ -107,7 +107,12 @@ const CTASection = () => {
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="heroSecondary" size="lg" className="text-sm md:text-base">
+              <Button 
+                variant="heroSecondary" 
+                size="lg" 
+                className="text-sm md:text-base"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
                 Contact Our Team
               </Button>

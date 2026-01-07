@@ -4,14 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Send, Building2, Mail, MessageSquare } from "lucide-react";
+import { Send, Mail, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  schoolName: z.string().trim().min(1, "School name is required").max(200, "School name must be less than 200 characters"),
   email: z.string().trim().email("Please enter a valid email").max(255, "Email must be less than 255 characters"),
   message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message must be less than 1000 characters"),
 });
@@ -25,7 +24,6 @@ const ContactSection = () => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
-    schoolName: "",
     email: "",
     message: "",
   });
@@ -58,7 +56,7 @@ const ContactSection = () => {
     try {
       const { error } = await supabase.from("contact_submissions").insert({
         name: result.data.name,
-        school_name: result.data.schoolName,
+        school_name: "Franchise Inquiry",
         email: result.data.email,
         message: result.data.message,
       });
@@ -72,7 +70,7 @@ const ContactSection = () => {
         description: "Thank you for your interest. We'll get back to you within 24 hours.",
       });
 
-      setFormData({ name: "", schoolName: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
@@ -120,13 +118,13 @@ const ContactSection = () => {
           className="text-center mb-12"
         >
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-            Get In Touch
+            Get Our Franchise
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mb-4">
-            Interested in a Partnership?
+            Interested in a Franchise?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Fill out the form below and our team will reach out to discuss how Edu Improvement AI can benefit your school.
+            Fill out the form below or email us at <a href="mailto:royabhikne@gmail.com" className="text-primary hover:underline">royabhikne@gmail.com</a>
           </p>
         </motion.div>
 
@@ -142,39 +140,20 @@ const ContactSection = () => {
             onSubmit={handleSubmit}
             className="bg-card rounded-2xl p-8 shadow-card border border-border space-y-6"
           >
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="flex items-center gap-2 text-foreground">
-                  <span>Your Name</span>
-                </Label>
-                <Input
-                  id="name"
-                  placeholder="Enter your full name"
-                  value={formData.name}
-                  onChange={(e) => handleChange("name", e.target.value)}
-                  className={errors.name ? "border-destructive" : ""}
-                />
-                {errors.name && (
-                  <p className="text-sm text-destructive">{errors.name}</p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="schoolName" className="flex items-center gap-2 text-foreground">
-                  <Building2 className="w-4 h-4 text-muted-foreground" />
-                  <span>School Name</span>
-                </Label>
-                <Input
-                  id="schoolName"
-                  placeholder="Enter school name"
-                  value={formData.schoolName}
-                  onChange={(e) => handleChange("schoolName", e.target.value)}
-                  className={errors.schoolName ? "border-destructive" : ""}
-                />
-                {errors.schoolName && (
-                  <p className="text-sm text-destructive">{errors.schoolName}</p>
-                )}
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="name" className="flex items-center gap-2 text-foreground">
+                <span>Your Name</span>
+              </Label>
+              <Input
+                id="name"
+                placeholder="Enter your full name"
+                value={formData.name}
+                onChange={(e) => handleChange("name", e.target.value)}
+                className={errors.name ? "border-destructive" : ""}
+              />
+              {errors.name && (
+                <p className="text-sm text-destructive">{errors.name}</p>
+              )}
             </div>
 
             <div className="space-y-2">
