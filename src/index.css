@@ -159,7 +159,7 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
+    @apply py-12 sm:py-16 md:py-24 lg:py-32;
   }
 
   .gradient-text {

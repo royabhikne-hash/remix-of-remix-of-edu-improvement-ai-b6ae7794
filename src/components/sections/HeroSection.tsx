@@ -40,7 +40,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-16 md:pt-20 overflow-hidden"
     >
       {/* Parallax Background */}
       <motion.div
@@ -51,15 +51,15 @@ const HeroSection = () => {
       {/* Decorative Elements with Parallax */}
       <motion.div
         style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "50%"]) }}
-        className="absolute top-40 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
+        className="absolute top-40 left-10 w-48 md:w-72 h-48 md:h-72 bg-primary/5 rounded-full blur-3xl"
       />
       <motion.div
         style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "40%"]) }}
-        className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
+        className="absolute bottom-20 right-10 w-64 md:w-96 h-64 md:h-96 bg-secondary/10 rounded-full blur-3xl"
       />
 
-      <div className="section-container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="section-container relative z-10 py-8 md:py-0">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <motion.div
             style={{ y: textY, opacity }}
@@ -70,7 +70,7 @@ const HeroSection = () => {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-heading text-foreground leading-tight mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading text-foreground leading-tight mb-4 md:mb-6"
             >
               Improving How Students Study —{" "}
               <span className="text-primary">
@@ -80,7 +80,7 @@ const HeroSection = () => {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
+              className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-6 md:mb-8 leading-relaxed"
             >
               A digital study companion that helps students develop better
               self-study habits while keeping schools and parents genuinely
@@ -89,13 +89,13 @@ const HeroSection = () => {
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
+              className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start mb-8 md:mb-12"
             >
-              <Button variant="hero" size="xl" className="group">
+              <Button variant="hero" size="lg" className="group text-sm md:text-base">
                 Request School Demo
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="heroSecondary" size="xl">
+              <Button variant="heroSecondary" size="lg" className="text-sm md:text-base">
                 Meet the Team
               </Button>
             </motion.div>
@@ -128,19 +128,19 @@ const HeroSection = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
               whileHover={{ scale: 1.05 }}
-              className="absolute -bottom-6 -left-6 bg-card p-4 rounded-xl shadow-card border border-border"
+              className="absolute -bottom-4 -left-2 md:-bottom-6 md:-left-6 bg-card p-3 md:p-4 rounded-xl shadow-card border border-border"
             >
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-2 md:gap-3"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6 text-primary" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <GraduationCap className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">Study Insights</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="font-semibold text-foreground text-sm md:text-base">Study Insights</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     Updated in real-time
                   </p>
                 </div>

@@ -81,7 +81,7 @@ const ProblemSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-block text-primary font-medium text-sm uppercase tracking-wide"
+            className="inline-block text-primary font-medium text-xs md:text-sm uppercase tracking-wide"
           >
             The Challenge
           </motion.span>
@@ -90,7 +90,7 @@ const ProblemSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-3 mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-2 md:mt-3 mb-4 md:mb-6"
           >
             The Real Problem with Self-Study
           </motion.h2>
@@ -99,7 +99,7 @@ const ProblemSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-muted-foreground leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground leading-relaxed"
           >
             Every day, millions of students sit down to study. But the gap
             between studying and truly learning remains invisible to everyone
@@ -112,7 +112,7 @@ const ProblemSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-4 md:gap-8"
         >
           {problems.map((problem, index) => (
             <motion.div
@@ -122,20 +122,20 @@ const ProblemSection = () => {
                 y: -8,
                 transition: { duration: 0.3 },
               }}
-              className="group bg-card rounded-2xl p-8 shadow-card border border-border/50 hover:shadow-elevated hover:border-primary/20 transition-all duration-300"
+              className="group bg-card rounded-xl md:rounded-2xl p-5 md:p-8 shadow-card border border-border/50 hover:shadow-elevated hover:border-primary/20 transition-all duration-300"
             >
               <motion.div
                 initial={{ scale: 1 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ duration: 0.3 }}
-                className="icon-container mb-6"
+                className="icon-container mb-4 md:mb-6 w-12 h-12 md:w-14 md:h-14"
               >
-                <problem.icon className="w-7 h-7" />
+                <problem.icon className="w-6 h-6 md:w-7 md:h-7" />
               </motion.div>
-              <h3 className="text-xl font-heading text-foreground mb-3 group-hover:text-primary transition-colors">
+              <h3 className="text-lg md:text-xl font-heading text-foreground mb-2 md:mb-3 group-hover:text-primary transition-colors">
                 {problem.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                 {problem.description}
               </p>
             </motion.div>

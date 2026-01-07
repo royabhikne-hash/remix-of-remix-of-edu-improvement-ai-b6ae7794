@@ -117,7 +117,7 @@ const WhoWeServeSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block text-primary font-medium text-sm uppercase tracking-wide"
+            className="inline-block text-primary font-medium text-xs md:text-sm uppercase tracking-wide"
           >
             Who We Serve
           </motion.span>
@@ -126,7 +126,7 @@ const WhoWeServeSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-3 mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-2 md:mt-3 mb-4 md:mb-6"
           >
             Built for Everyone in the Education Ecosystem
           </motion.h2>
@@ -135,7 +135,7 @@ const WhoWeServeSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground leading-relaxed"
           >
             Edu Improvement AI bridges the gap between students, schools, and
             parents—creating a unified approach to better academic outcomes.
@@ -147,7 +147,7 @@ const WhoWeServeSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-4 md:gap-8"
           style={{ perspective: "1000px" }}
         >
           {audiences.map((audience, index) => (
@@ -158,7 +158,7 @@ const WhoWeServeSection = () => {
                 y: -12,
                 transition: { duration: 0.3 },
               }}
-              className="group bg-card rounded-2xl p-8 shadow-card border border-border/50 hover:shadow-elevated hover:border-primary/20 transition-all duration-300 relative overflow-hidden"
+              className="group bg-card rounded-xl md:rounded-2xl p-5 md:p-8 shadow-card border border-border/50 hover:shadow-elevated hover:border-primary/20 transition-all duration-300 relative overflow-hidden"
             >
               {/* Decorative corner */}
               <motion.div
@@ -166,25 +166,25 @@ const WhoWeServeSection = () => {
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className={`absolute top-0 right-0 w-24 h-24 ${colorVariants[audience.color].bg} rounded-bl-[100%] opacity-50`}
+                className={`absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 ${colorVariants[audience.color].bg} rounded-bl-[100%] opacity-50`}
               />
 
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 10 }}
                 transition={{ duration: 0.3 }}
-                className={`w-16 h-16 rounded-2xl ${colorVariants[audience.color].bg} ${colorVariants[audience.color].hover} flex items-center justify-center mb-6 transition-colors duration-300`}
+                className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl ${colorVariants[audience.color].bg} ${colorVariants[audience.color].hover} flex items-center justify-center mb-4 md:mb-6 transition-colors duration-300`}
               >
                 <audience.icon
-                  className={`w-8 h-8 ${colorVariants[audience.color].icon}`}
+                  className={`w-6 h-6 md:w-8 md:h-8 ${colorVariants[audience.color].icon}`}
                 />
               </motion.div>
 
-              <h3 className="text-2xl font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
+              <h3 className="text-xl md:text-2xl font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
                 {audience.title}
               </h3>
-              <p className="text-muted-foreground mb-6">{audience.description}</p>
+              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">{audience.description}</p>
 
-              <ul className="space-y-3">
+              <ul className="space-y-2 md:space-y-3">
                 {audience.benefits.map((benefit, benefitIndex) => (
                   <motion.li
                     key={benefit}
@@ -192,12 +192,12 @@ const WhoWeServeSection = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 + index * 0.1 + benefitIndex * 0.05 }}
-                    className="flex items-start gap-3"
+                    className="flex items-start gap-2 md:gap-3"
                   >
                     <Check
-                      className={`w-5 h-5 mt-0.5 flex-shrink-0 ${colorVariants[audience.color].check}`}
+                      className={`w-4 h-4 md:w-5 md:h-5 mt-0.5 flex-shrink-0 ${colorVariants[audience.color].check}`}
                     />
-                    <span className="text-foreground/90">{benefit}</span>
+                    <span className="text-sm md:text-base text-foreground/90">{benefit}</span>
                   </motion.li>
                 ))}
               </ul>

@@ -78,7 +78,7 @@ const CTASection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mb-4 md:mb-6"
           >
             Let's Improve Student Study Habits Together
           </motion.h2>
@@ -87,7 +87,7 @@ const CTASection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg text-muted-foreground leading-relaxed mb-10"
+            className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 md:mb-10"
           >
             Let's create better, more transparent learning experiences for students together.
           </motion.p>
@@ -97,18 +97,18 @@ const CTASection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="hero" size="xl" className="group">
-                <Calendar className="w-5 h-5" />
+              <Button variant="hero" size="lg" className="group text-sm md:text-base">
+                <Calendar className="w-4 h-4 md:w-5 md:h-5" />
                 Book a Demo
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="heroSecondary" size="xl">
-                <MessageCircle className="w-5 h-5" />
+              <Button variant="heroSecondary" size="lg" className="text-sm md:text-base">
+                <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
                 Contact Our Team
               </Button>
             </motion.div>

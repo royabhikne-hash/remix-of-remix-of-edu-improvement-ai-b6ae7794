@@ -97,7 +97,7 @@ const TeamSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block text-primary font-medium text-sm uppercase tracking-wide"
+            className="inline-block text-primary font-medium text-xs md:text-sm uppercase tracking-wide"
           >
             Our Team
           </motion.span>
@@ -106,7 +106,7 @@ const TeamSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-3 mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-2 md:mt-3 mb-4 md:mb-6"
           >
             The People Behind Edu Improvement AI
           </motion.h2>
@@ -115,7 +115,7 @@ const TeamSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground leading-relaxed"
           >
             Educators, technologists, and parents who believe in the power of
             transparent, supportive learning.
@@ -127,7 +127,7 @@ const TeamSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
         >
           {team.map((member, index) => (
             <motion.div
@@ -139,7 +139,7 @@ const TeamSection = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
-                className="relative mb-6 overflow-hidden rounded-2xl"
+                className="relative mb-3 md:mb-6 overflow-hidden rounded-xl md:rounded-2xl"
               >
                 <motion.img
                   src={member.image}
@@ -177,7 +177,7 @@ const TeamSection = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + index * 0.1 }}
-                className="text-xl font-heading text-foreground mb-1 group-hover:text-primary transition-colors"
+                className="text-base md:text-xl font-heading text-foreground mb-0.5 md:mb-1 group-hover:text-primary transition-colors"
               >
                 {member.name}
               </motion.h3>
@@ -186,7 +186,7 @@ const TeamSection = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.35 + index * 0.1 }}
-                className="text-primary font-medium text-sm mb-3"
+                className="text-primary font-medium text-xs md:text-sm mb-2 md:mb-3"
               >
                 {member.role}
               </motion.p>
@@ -195,7 +195,7 @@ const TeamSection = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="text-muted-foreground text-sm italic leading-relaxed"
+                className="text-muted-foreground text-xs md:text-sm italic leading-relaxed hidden sm:block"
               >
                 "{member.mission}"
               </motion.p>

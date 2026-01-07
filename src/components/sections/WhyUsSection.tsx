@@ -93,7 +93,7 @@ const WhyUsSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block text-primary font-medium text-sm uppercase tracking-wide"
+            className="inline-block text-primary font-medium text-xs md:text-sm uppercase tracking-wide"
           >
             Why Choose Us
           </motion.span>
@@ -102,7 +102,7 @@ const WhyUsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-3 mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-2 md:mt-3 mb-4 md:mb-6"
           >
             Why Edu Improvement AI?
           </motion.h2>
@@ -111,7 +111,7 @@ const WhyUsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground leading-relaxed"
           >
             We've built more than a product—we've built a philosophy around
             responsible, effective education technology.
@@ -123,7 +123,7 @@ const WhyUsSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
         >
           {reasons.map((reason, index) => (
             <motion.div
@@ -134,19 +134,19 @@ const WhyUsSection = () => {
                 y: -5,
                 transition: { duration: 0.2 },
               }}
-              className="group bg-card rounded-xl p-6 border border-border/50 hover:border-primary/30 hover:shadow-card transition-all duration-300 cursor-pointer"
+              className="group bg-card rounded-lg md:rounded-xl p-4 md:p-6 border border-border/50 hover:border-primary/30 hover:shadow-card transition-all duration-300 cursor-pointer"
             >
               <motion.div
                 whileHover={{ scale: 1.15, rotate: 10 }}
                 transition={{ duration: 0.3 }}
-                className="w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-4 transition-colors"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-3 md:mb-4 transition-colors"
               >
-                <reason.icon className="w-6 h-6 text-primary" />
+                <reason.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
               </motion.div>
-              <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+              <h3 className="text-sm md:text-lg font-semibold text-foreground mb-1 md:mb-2 group-hover:text-primary transition-colors">
                 {reason.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
                 {reason.description}
               </p>
             </motion.div>
