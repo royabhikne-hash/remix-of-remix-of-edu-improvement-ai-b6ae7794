@@ -41,7 +41,7 @@ const TeamSection = () => {
       linkedin: "https://www.linkedin.com/in/deepika-sharma-3b7348219",
     },
     {
-      name: "Subham",
+      name: "Shubham Singh",
       role: "Frontend Developer",
       mission:
         "Builds student-facing and school dashboard interfaces with mobile-first focus.",
