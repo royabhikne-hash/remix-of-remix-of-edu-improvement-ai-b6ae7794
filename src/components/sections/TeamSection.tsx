@@ -7,6 +7,7 @@ import deepikaSharmaImage from "@/assets/deepika-sharma.jpg";
 import subhamImage from "@/assets/subham.jpg";
 import zulfequarAhmadImage from "@/assets/zulfequar-ahmad.jpg";
 import shivrajYadavImage from "@/assets/shivraj-yadav.jpg";
+import shivamImage from "@/assets/shivam.jpg";
 
 const TeamSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -74,7 +75,7 @@ const TeamSection = () => {
       role: "Ground Operations Team",
       mission:
         "Works directly with schools for demos, onboarding, feedback collection, and daily coordination.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      image: shivamImage,
       linkedin: "#",
     },
     {
