@@ -8,6 +8,7 @@ import subhamImage from "@/assets/subham.jpg";
 import zulfequarAhmadImage from "@/assets/zulfequar-ahmad.jpg";
 import shivrajYadavImage from "@/assets/shivraj-yadav.jpg";
 import shivamImage from "@/assets/shivam.jpg";
+import avinavImage from "@/assets/avinav.jpg";
 
 const TeamSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -83,7 +84,7 @@ const TeamSection = () => {
       role: "Ground Operations Team",
       mission:
         "Supports school outreach, presentations, follow-ups, and on-ground execution.",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
+      image: avinavImage,
       linkedin: "#",
     },
   ];
