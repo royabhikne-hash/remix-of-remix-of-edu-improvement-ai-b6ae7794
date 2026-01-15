@@ -49,6 +49,11 @@ const Header = () => {
             <Button variant="hero" size="sm">
               Request Demo
             </Button>
+            <a href="/admin">
+              <Button variant="ghost" size="sm" className="text-muted-foreground">
+                Admin
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
