@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calendar, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 
 const CTASection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -100,21 +100,15 @@ const CTASection = () => {
             className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="hero" size="lg" className="group text-sm md:text-base">
-                <Calendar className="w-4 h-4 md:w-5 md:h-5" />
-                Book a Demo
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Button 
-                variant="heroSecondary" 
+                variant="hero" 
                 size="lg" 
-                className="text-sm md:text-base"
+                className="group text-sm md:text-base"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
                 Contact Our Team
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.div>
           </motion.div>
