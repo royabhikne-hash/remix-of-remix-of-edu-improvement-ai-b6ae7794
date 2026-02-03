@@ -132,9 +132,9 @@ const ContactSection = () => {
               <Phone className="w-5 h-5" />
               <span>+91 7091165195</span>
             </a>
-            <a href="tel:+919473255104" className="flex items-center gap-2 hover:text-primary transition-colors">
+            <a href="tel:+919155352921" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Phone className="w-5 h-5" />
-              <span>+91 9473255104</span>
+              <span>+91 9155352921</span>
             </a>
             <a href="mailto:royabhikne@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Mail className="w-5 h-5" />

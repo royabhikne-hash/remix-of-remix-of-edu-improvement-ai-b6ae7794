@@ -7,8 +7,6 @@ import deepikaSharmaImage from "@/assets/deepika-sharma.jpg";
 import subhamImage from "@/assets/subham.jpg";
 import zulfequarAhmadImage from "@/assets/zulfequar-ahmad.jpg";
 import shivrajYadavImage from "@/assets/shivraj-yadav.jpg";
-import shivamImage from "@/assets/shivam.jpg";
-import avinavImage from "@/assets/avinav.jpg";
 
 const TeamSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -69,22 +67,6 @@ const TeamSection = () => {
       mission:
         "Manages school onboarding strategy, partnerships, and execution on the ground.",
       image: shivrajYadavImage,
-      linkedin: "#",
-    },
-    {
-      name: "Shivam",
-      role: "Ground Operations Team",
-      mission:
-        "Works directly with schools for demos, onboarding, feedback collection, and daily coordination.",
-      image: shivamImage,
-      linkedin: "#",
-    },
-    {
-      name: "Avinav",
-      role: "Ground Operations Team",
-      mission:
-        "Supports school outreach, presentations, follow-ups, and on-ground execution.",
-      image: avinavImage,
       linkedin: "#",
     },
   ];
