@@ -12,10 +12,10 @@ type Message = {
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/franchise-chat`;
 
 const quickActions = [
-  { label: "🎓 About Us", message: "Study Buddy AI क्या है?" },
-  { label: "📚 Features", message: "आपके platform की main features क्या हैं?" },
-  { label: "🏫 For Schools", message: "Schools के लिए यह कैसे helpful है?" },
-  { label: "📞 Contact", message: "आपसे कैसे संपर्क करें?" },
+  { label: "🎓 About Us", message: "What is Study Buddy AI?" },
+  { label: "📚 Features", message: "What are the main features of your platform?" },
+  { label: "🏫 For Schools", message: "How is this helpful for schools?" },
+  { label: "📞 Contact", message: "How can I contact you?" },
 ];
 
 const FranchiseChatbot = () => {
@@ -24,7 +24,7 @@ const FranchiseChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "नमस्ते! 👋 मैं Study Buddy AI का assistant हूं।\n\n🎓 हम India का leading AI-powered study companion हैं जो Class 6-12 के students को better self-study habits develop करने में मदद करता है।\n\nनीचे दिए buttons पर click करें या कोई भी सवाल पूछें!",
+      content: "Hello! 👋 I'm the Study Buddy AI assistant.\n\n🎓 We are building an AI-powered study companion for Class 6-12 students to help them develop better self-study habits.\n\nClick the buttons below or ask me anything!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -118,7 +118,7 @@ const FranchiseChatbot = () => {
         ...prev,
         {
           role: "assistant",
-          content: "माफ़ कीजिए, कुछ समस्या हुई। कृपया दोबारा कोशिश करें।",
+          content: "Sorry, something went wrong. Please try again.",
         },
       ]);
     } finally {
@@ -169,7 +169,7 @@ const FranchiseChatbot = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold">Study Buddy Assistant</h3>
-                  <p className="text-xs opacity-80">आपका सहायक</p>
+                  <p className="text-xs opacity-80">Your AI Helper</p>
                 </div>
               </div>
               <button
@@ -250,9 +250,9 @@ const FranchiseChatbot = () => {
                 onClick={scrollToContact}
                 className="w-full flex items-center justify-center gap-2 text-sm text-primary hover:underline"
               >
-                <Mail size={14} />
-                Contact करें - हम जल्द जवाब देंगे
-              </button>
+              <Mail size={14} />
+              Contact Us - We'll respond soon
+            </button>
             </div>
 
             {/* Input */}
@@ -267,7 +267,7 @@ const FranchiseChatbot = () => {
                 <Input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="अपना सवाल पूछें..."
+                  placeholder="Ask your question..."
                   className="flex-1 text-sm"
                   disabled={isLoading}
                 />
