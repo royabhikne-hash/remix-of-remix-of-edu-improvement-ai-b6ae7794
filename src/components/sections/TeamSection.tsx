@@ -29,7 +29,7 @@ const TeamSection = () => {
     },
     {
       name: "Ashveth Pawar",
-      role: "Chief Technology Officer",
+      role: "Co-Founder & Chief Technology Officer",
       mission:
         "Leads overall technical architecture, system scalability, and AI integration.",
       image: ashvethPawarImage,
@@ -56,7 +56,7 @@ const TeamSection = () => {
   const opsTeam = [
     {
       name: "Sambharam G",
-      role: "Chief Operating Officer",
+      role: "Co-Founder & Chief Operating Officer",
       mission:
         "Leads overall operations, strategic partnerships, and ensures seamless execution across all teams.",
       image: sambharamImage,
@@ -64,7 +64,7 @@ const TeamSection = () => {
     },
     {
       name: "Zulfequar Ahmad",
-      role: "Ground Operations Team",
+      role: "Co-Founder & Ground Operations Team",
       mission:
         "Works directly with schools for demos, onboarding, feedback collection, and daily coordination.",
       image: zulfequarAhmadImage,
@@ -72,7 +72,7 @@ const TeamSection = () => {
     },
     {
       name: "Shivraj Kumar Yadav",
-      role: "Ground Operations Team",
+      role: "Co-Founder & Ground Operations Team",
       mission:
         "Manages school onboarding strategy, partnerships, and execution on the ground.",
       image: shivrajYadavImage,
