@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import studyBuddyLogo from "@/assets/study-buddy-logo.jpeg";
 
 const Footer = () => {
   return (
@@ -8,10 +9,8 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-primary-foreground flex items-center justify-center">
-                <span className="text-foreground font-heading text-lg font-bold">E</span>
-              </div>
-              <span className="font-heading text-xl">Edu Improvement AI</span>
+              <img src={studyBuddyLogo} alt="Study Buddy AI" className="w-10 h-10 rounded-xl object-cover" />
+              <span className="font-heading text-xl">Study Buddy AI</span>
             </div>
             <p className="text-primary-foreground/70 max-w-sm leading-relaxed">
               Improving how students study — with trust, clarity, and accountability. 
@@ -74,7 +73,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-primary-foreground/60 text-sm">
-            © {new Date().getFullYear()} Edu Improvement AI. All rights reserved.
+            © {new Date().getFullYear()} Study Buddy AI. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-primary-foreground/60">
             <a href="#" className="hover:text-primary-foreground transition-colors">Privacy Policy</a>

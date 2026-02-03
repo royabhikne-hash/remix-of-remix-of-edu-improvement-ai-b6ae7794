@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import studyBuddyLogo from "@/assets/study-buddy-logo.jpeg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,11 +21,9 @@ const Header = () => {
         <nav className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-heading text-lg font-bold">E</span>
-            </div>
+            <img src={studyBuddyLogo} alt="Study Buddy AI" className="w-10 h-10 rounded-xl object-cover" />
             <span className="font-heading text-xl text-foreground hidden sm:block">
-              Edu Improvement AI
+              Study Buddy AI
             </span>
           </a>
 
