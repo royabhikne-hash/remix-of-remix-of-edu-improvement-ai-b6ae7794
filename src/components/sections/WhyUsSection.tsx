@@ -104,7 +104,7 @@ const WhyUsSection = () => {
             transition={{ delay: 0.1 }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mt-2 md:mt-3 mb-4 md:mb-6"
           >
-            Why Edu Improvement AI?
+            Why Study Buddy AI?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

@@ -137,7 +137,7 @@ const WhoWeServeSection = () => {
             transition={{ delay: 0.2 }}
             className="text-base md:text-lg text-muted-foreground leading-relaxed"
           >
-            Edu Improvement AI bridges the gap between students, schools, and
+            Study Buddy AI bridges the gap between students, schools, and
             parents—creating a unified approach to better academic outcomes.
           </motion.p>
         </motion.div>

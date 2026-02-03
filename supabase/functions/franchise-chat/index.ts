@@ -18,9 +18,9 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are a helpful assistant for Edu Improvement AI. You help visitors learn about our startup and its mission.
+    const systemPrompt = `You are a helpful assistant for Study Buddy AI. You help visitors learn about our startup and its mission.
 
-## About Edu Improvement AI:
+## About Study Buddy AI:
 - India's leading AI-powered study companion for students (Class 6-12)
 - We help students develop better self-study habits through personalized AI tutoring
 - Provides schools and parents with real-time academic visibility and progress tracking

@@ -104,7 +104,7 @@ const SolutionSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-muted-foreground leading-relaxed mb-8"
             >
-              Edu Improvement AI is not a teaching platform or online tuition.
+              Study Buddy AI is not a teaching platform or online tuition.
               It's a thoughtful study companion that enhances self-study while
               creating transparency for everyone invested in a student's
               success.

@@ -12,7 +12,7 @@ type Message = {
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/franchise-chat`;
 
 const quickActions = [
-  { label: "🎓 About Us", message: "Edu Improvement AI क्या है?" },
+  { label: "🎓 About Us", message: "Study Buddy AI क्या है?" },
   { label: "📚 Features", message: "आपके platform की main features क्या हैं?" },
   { label: "🏫 For Schools", message: "Schools के लिए यह कैसे helpful है?" },
   { label: "📞 Contact", message: "आपसे कैसे संपर्क करें?" },
@@ -24,7 +24,7 @@ const FranchiseChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "नमस्ते! 👋 मैं Edu Improvement AI का assistant हूं।\n\n🎓 हम India का leading AI-powered study companion हैं जो Class 6-12 के students को better self-study habits develop करने में मदद करता है।\n\nनीचे दिए buttons पर click करें या कोई भी सवाल पूछें!",
+      content: "नमस्ते! 👋 मैं Study Buddy AI का assistant हूं।\n\n🎓 हम India का leading AI-powered study companion हैं जो Class 6-12 के students को better self-study habits develop करने में मदद करता है।\n\nनीचे दिए buttons पर click करें या कोई भी सवाल पूछें!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -168,7 +168,7 @@ const FranchiseChatbot = () => {
                   <Bot size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Edu AI Assistant</h3>
+                  <h3 className="font-semibold">Study Buddy Assistant</h3>
                   <p className="text-xs opacity-80">आपका सहायक</p>
                 </div>
               </div>
