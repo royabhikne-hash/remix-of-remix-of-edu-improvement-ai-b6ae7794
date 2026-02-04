@@ -1,41 +1,46 @@
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { ArrowRight, GraduationCap } from "lucide-react";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import heroImage from "@/assets/hero-students.jpg";
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  // Pre-compute all transforms to avoid inline creation
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", reducedMotion ? "0%" : "30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", reducedMotion ? "0%" : "15%"]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", reducedMotion ? "0%" : "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, reducedMotion ? 1 : 0]);
+  const decorY1 = useTransform(scrollYProgress, [0, 1], ["0%", reducedMotion ? "0%" : "50%"]);
+  const decorY2 = useTransform(scrollYProgress, [0, 1], ["0%", reducedMotion ? "0%" : "40%"]);
 
-
-  const containerVariants = {
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
+        staggerChildren: reducedMotion ? 0 : 0.15,
+        delayChildren: reducedMotion ? 0 : 0.2,
       },
     },
-  };
+  }), [reducedMotion]);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const itemVariants = useMemo(() => ({
+    hidden: { opacity: 0, y: reducedMotion ? 0 : 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0, 0, 0.2, 1] as const },
+      transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0, 0, 0.2, 1] as const },
     },
-  };
+  }), [reducedMotion]);
 
   return (
     <section
@@ -48,21 +53,25 @@ const HeroSection = () => {
         className="absolute inset-0 bg-gradient-to-b from-primary-light/50 to-background"
       />
 
-      {/* Decorative Elements with Parallax */}
-      <motion.div
-        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "50%"]) }}
-        className="absolute top-40 left-10 w-48 md:w-72 h-48 md:h-72 bg-primary/5 rounded-full blur-3xl"
-      />
-      <motion.div
-        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "40%"]) }}
-        className="absolute bottom-20 right-10 w-64 md:w-96 h-64 md:h-96 bg-secondary/10 rounded-full blur-3xl"
-      />
+      {/* Decorative Elements with Parallax - Only on desktop */}
+      {!reducedMotion && (
+        <>
+          <motion.div
+            style={{ y: decorY1 }}
+            className="absolute top-40 left-10 w-48 md:w-72 h-48 md:h-72 bg-primary/5 rounded-full blur-3xl"
+          />
+          <motion.div
+            style={{ y: decorY2 }}
+            className="absolute bottom-20 right-10 w-64 md:w-96 h-64 md:h-96 bg-secondary/10 rounded-full blur-3xl"
+          />
+        </>
+      )}
 
       <div className="section-container relative z-10 py-8 md:py-0">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <motion.div
-            style={{ y: textY, opacity }}
+            style={reducedMotion ? undefined : { y: textY, opacity }}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -109,24 +118,22 @@ const HeroSection = () => {
                 Meet the Team
               </Button>
             </motion.div>
-
           </motion.div>
 
-          {/* Hero Image with Parallax */}
+          {/* Hero Image */}
           <motion.div
-            style={{ y: imageY }}
-            initial={{ opacity: 0, scale: 0.9, x: 50 }}
+            style={reducedMotion ? undefined : { y: imageY }}
+            initial={{ opacity: 0, scale: 0.95, x: reducedMotion ? 0 : 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: reducedMotion ? 0.3 : 0.8, delay: reducedMotion ? 0 : 0.3 }}
             className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-elevated">
-              <motion.img
+              <img
                 src={heroImage}
                 alt="Indian students studying together with modern learning tools"
                 className="w-full h-auto object-cover"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.4 }}
+                loading="eager"
               />
               {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
@@ -136,15 +143,10 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              whileHover={{ scale: 1.05 }}
+              transition={{ duration: reducedMotion ? 0.2 : 0.6, delay: reducedMotion ? 0 : 0.8 }}
               className="absolute -bottom-4 -left-2 md:-bottom-6 md:-left-6 bg-card p-3 md:p-4 rounded-xl shadow-card border border-border"
             >
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                className="flex items-center gap-2 md:gap-3"
-              >
+              <div className="flex items-center gap-2 md:gap-3">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
@@ -154,27 +156,29 @@ const HeroSection = () => {
                     Updated in real-time
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
+      {/* Scroll Indicator - Only on desktop */}
+      {!reducedMotion && (
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-primary/30 flex justify-center pt-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
         >
-          <motion.div className="w-1.5 h-1.5 bg-primary rounded-full" />
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-6 h-10 rounded-full border-2 border-primary/30 flex justify-center pt-2"
+          >
+            <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </section>
   );
 };

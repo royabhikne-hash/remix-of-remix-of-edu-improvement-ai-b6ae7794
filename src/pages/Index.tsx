@@ -1,16 +1,30 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
-import ProblemSection from "@/components/sections/ProblemSection";
-import SolutionSection from "@/components/sections/SolutionSection";
-import WhoWeServeSection from "@/components/sections/WhoWeServeSection";
-import WhyUsSection from "@/components/sections/WhyUsSection";
-import TrustSection from "@/components/sections/TrustSection";
-import TeamSection from "@/components/sections/TeamSection";
-import ContactSection from "@/components/sections/ContactSection";
-import CTASection from "@/components/sections/CTASection";
-import FranchiseChatbot from "@/components/FranchiseChatbot";
+
+// Lazy load below-fold sections for better initial load
+const ProblemSection = lazy(() => import("@/components/sections/ProblemSection"));
+const SolutionSection = lazy(() => import("@/components/sections/SolutionSection"));
+const WhoWeServeSection = lazy(() => import("@/components/sections/WhoWeServeSection"));
+const WhyUsSection = lazy(() => import("@/components/sections/WhyUsSection"));
+const TrustSection = lazy(() => import("@/components/sections/TrustSection"));
+const TeamSection = lazy(() => import("@/components/sections/TeamSection"));
+const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
+const CTASection = lazy(() => import("@/components/sections/CTASection"));
+const FranchiseChatbot = lazy(() => import("@/components/FranchiseChatbot"));
+
+// Minimal loading placeholder
+const SectionLoader = () => (
+  <div className="section-padding">
+    <div className="section-container">
+      <div className="h-64 flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    </div>
+  </div>
+);
 
 const Index = () => {
   return (
@@ -49,17 +63,35 @@ const Index = () => {
         <Header />
         <main>
           <HeroSection />
-          <ProblemSection />
-          <SolutionSection />
-          <WhoWeServeSection />
-          <WhyUsSection />
-          <TrustSection />
-          <TeamSection />
-          <ContactSection />
-          <CTASection />
+          <Suspense fallback={<SectionLoader />}>
+            <ProblemSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <SolutionSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <WhoWeServeSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <WhyUsSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <TrustSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <TeamSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <ContactSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <CTASection />
+          </Suspense>
         </main>
         <Footer />
-        <FranchiseChatbot />
+        <Suspense fallback={null}>
+          <FranchiseChatbot />
+        </Suspense>
       </div>
     </>
   );

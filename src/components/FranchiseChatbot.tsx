@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, X, Send, Bot, User, Phone, Mail } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 type Message = {
   role: "user" | "assistant";
@@ -19,6 +20,7 @@ const quickActions = [
 ];
 
 const FranchiseChatbot = () => {
+  const reducedMotion = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
   const [showQuickActions, setShowQuickActions] = useState(true);
   const [messages, setMessages] = useState<Message[]>([
@@ -31,13 +33,13 @@ const FranchiseChatbot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollToBottom = useCallback(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+  }, [reducedMotion]);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, scrollToBottom]);
 
   const streamChat = async (userMessages: Message[]) => {
     const resp = await fetch(CHAT_URL, {
@@ -78,8 +80,9 @@ const FranchiseChatbot = () => {
 
         try {
           const parsed = JSON.parse(jsonStr);
-          const content = parsed.choices?.[0]?.delta?.content as string | undefined;
-          if (content) {
+          const content = parsed.choices?.[0]?.delta?.content;
+          // Type-safe content check - ensure it's a string
+          if (typeof content === "string" && content.length > 0) {
             assistantContent += content;
             setMessages((prev) => {
               const last = prev[prev.length - 1];
@@ -130,8 +133,17 @@ const FranchiseChatbot = () => {
     setIsOpen(false);
     const contactSection = document.getElementById("contact");
     if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+      contactSection.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
     }
+  };
+
+  // Safe message content renderer to prevent hydration issues
+  const renderMessageContent = (content: unknown): string => {
+    if (typeof content === "string") return content;
+    if (content === null || content === undefined) return "";
+    if (typeof content === "number" || typeof content === "boolean") return String(content);
+    console.warn("Unexpected content type in message:", typeof content);
+    return "[Unable to display message]";
   };
 
   return (
@@ -140,9 +152,9 @@ const FranchiseChatbot = () => {
       <AnimatePresence>
         {!isOpen && (
           <motion.button
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
+            initial={reducedMotion ? { opacity: 1 } : { scale: 0 }}
+            animate={reducedMotion ? { opacity: 1 } : { scale: 1 }}
+            exit={reducedMotion ? { opacity: 0 } : { scale: 0 }}
             onClick={() => setIsOpen(true)}
             className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
             aria-label="Open chat"
@@ -156,9 +168,9 @@ const FranchiseChatbot = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
+            animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
             className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-100px)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
@@ -204,7 +216,7 @@ const FranchiseChatbot = () => {
                         : "bg-muted text-foreground rounded-bl-md"
                     }`}
                   >
-                    {msg.content}
+                    {renderMessageContent(msg.content)}
                   </div>
                 </div>
               ))}

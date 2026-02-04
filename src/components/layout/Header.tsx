@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import studyBuddyLogo from "@/assets/study-buddy-logo.jpeg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   const navLinks = [
     { label: "Problem", href: "#problem" },
@@ -15,13 +16,20 @@ const Header = () => {
     { label: "Team", href: "#team" },
   ];
 
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="section-container">
         <nav className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <img src={studyBuddyLogo} alt="Study Buddy AI" className="w-10 h-10 rounded-xl object-cover" />
+            <img 
+              src={studyBuddyLogo} 
+              alt="Study Buddy AI" 
+              className="w-10 h-10 rounded-xl object-cover"
+              loading="eager"
+            />
             <span className="font-heading text-xl text-foreground hidden sm:block">
               Study Buddy AI
             </span>
@@ -66,43 +74,40 @@ const Header = () => {
         </nav>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-card border-b border-border"
-          >
-            <div className="section-container py-4 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block text-muted-foreground hover:text-foreground transition-colors py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="outline" className="w-full">
-                  Contact Us
+      {/* Mobile Menu - Simple transition, no framer-motion */}
+      {isMenuOpen && (
+        <div
+          className={`lg:hidden bg-card border-b border-border ${
+            reducedMotion ? "" : "animate-in fade-in slide-in-from-top-2 duration-200"
+          }`}
+        >
+          <div className="section-container py-4 space-y-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block text-muted-foreground hover:text-foreground transition-colors py-2"
+                onClick={closeMenu}
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="flex flex-col gap-2 pt-4 border-t border-border">
+              <Button variant="outline" className="w-full">
+                Contact Us
+              </Button>
+              <Button variant="hero" className="w-full">
+                Request Demo
+              </Button>
+              <a href="/admin" onClick={closeMenu}>
+                <Button variant="ghost" className="w-full text-muted-foreground">
+                  Admin
                 </Button>
-                <Button variant="hero" className="w-full">
-                  Request Demo
-                </Button>
-                <a href="/admin" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full text-muted-foreground">
-                    Admin
-                  </Button>
-                </a>
-              </div>
+              </a>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
