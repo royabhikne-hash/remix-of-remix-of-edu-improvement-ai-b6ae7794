@@ -14,16 +14,16 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  // Global handler for unhandled promise rejections (e.g., dynamic import failures)
+  // Safety net: avoid blank UI on lazy module fetch failures.
+  // (Don’t blanket-prevent all rejections; only handle the known dynamic-import case.)
   useEffect(() => {
     const handleRejection = (event: PromiseRejectionEvent) => {
-      console.error("Unhandled rejection:", event.reason);
-      // Prevent the error from crashing the app
+      const msg =
+        event.reason instanceof Error ? event.reason.message : String(event.reason ?? "");
+      if (!msg.includes("dynamically imported module")) return;
+
+      console.error("Unhandled dynamic import rejection:", event.reason);
       event.preventDefault();
-      // Reload the page on dynamic import failures
-      if (event.reason?.message?.includes("dynamically imported module")) {
-        window.location.reload();
-      }
     };
 
     window.addEventListener("unhandledrejection", handleRejection);

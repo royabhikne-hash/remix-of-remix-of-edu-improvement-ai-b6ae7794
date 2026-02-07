@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
+import AsyncErrorBoundary from "@/components/AsyncErrorBoundary";
 
 // Helper for lazy imports with retry logic
 const lazyWithRetry = (componentImport: () => Promise<any>) =>
@@ -11,9 +12,14 @@ const lazyWithRetry = (componentImport: () => Promise<any>) =>
       return await componentImport();
     } catch (error) {
       console.error("Failed to load component, retrying...", error);
-      // Wait a bit and retry once
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      return componentImport();
+
+      try {
+        return await componentImport();
+      } catch (error2) {
+        console.error("Retry failed for lazy import", error2);
+        throw error2;
+      }
     }
   });
 
@@ -53,7 +59,7 @@ const Index = () => {
           content="EdTech, India, study companion, student learning, school technology, parent visibility, academic progress, self-study"
         />
         <link rel="canonical" href="https://studybuddy.ai" />
-        
+
         {/* Open Graph */}
         <meta property="og:title" content="Study Buddy AI - Improving How Students Study" />
         <meta
@@ -62,7 +68,7 @@ const Index = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://studybuddy.ai" />
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Study Buddy AI" />
@@ -74,37 +80,68 @@ const Index = () => {
 
       <div className="min-h-screen bg-background">
         <Header />
-        <main>
-          <HeroSection />
-          <Suspense fallback={<SectionLoader />}>
-            <ProblemSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <SolutionSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <WhoWeServeSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <WhyUsSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <TrustSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <TeamSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <ContactSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <CTASection />
-          </Suspense>
-        </main>
+
+        <AsyncErrorBoundary name="Page">
+          <main>
+            <HeroSection />
+
+            <AsyncErrorBoundary name="Problem">
+              <Suspense fallback={<SectionLoader />}>
+                <ProblemSection />
+              </Suspense>
+            </AsyncErrorBoundary>
+
+            <AsyncErrorBoundary name="Solution">
+              <Suspense fallback={<SectionLoader />}>
+                <SolutionSection />
+              </Suspense>
+            </AsyncErrorBoundary>
+
+            <AsyncErrorBoundary name="Who We Serve">
+              <Suspense fallback={<SectionLoader />}>
+                <WhoWeServeSection />
+              </Suspense>
+            </AsyncErrorBoundary>
+
+            <AsyncErrorBoundary name="Why Us">
+              <Suspense fallback={<SectionLoader />}>
+                <WhyUsSection />
+              </Suspense>
+            </AsyncErrorBoundary>
+
+            <AsyncErrorBoundary name="Trust">
+              <Suspense fallback={<SectionLoader />}>
+                <TrustSection />
+              </Suspense>
+            </AsyncErrorBoundary>
+
+            <AsyncErrorBoundary name="Team">
+              <Suspense fallback={<SectionLoader />}>
+                <TeamSection />
+              </Suspense>
+            </AsyncErrorBoundary>
+
+            <AsyncErrorBoundary name="Contact">
+              <Suspense fallback={<SectionLoader />}>
+                <ContactSection />
+              </Suspense>
+            </AsyncErrorBoundary>
+
+            <AsyncErrorBoundary name="CTA">
+              <Suspense fallback={<SectionLoader />}>
+                <CTASection />
+              </Suspense>
+            </AsyncErrorBoundary>
+          </main>
+        </AsyncErrorBoundary>
+
         <Footer />
-        <Suspense fallback={null}>
-          <FranchiseChatbot />
-        </Suspense>
+
+        <AsyncErrorBoundary name="Chat">
+          <Suspense fallback={null}>
+            <FranchiseChatbot />
+          </Suspense>
+        </AsyncErrorBoundary>
       </div>
     </>
   );
