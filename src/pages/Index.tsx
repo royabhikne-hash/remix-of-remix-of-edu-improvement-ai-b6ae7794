@@ -4,16 +4,29 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 
-// Lazy load below-fold sections for better initial load
-const ProblemSection = lazy(() => import("@/components/sections/ProblemSection"));
-const SolutionSection = lazy(() => import("@/components/sections/SolutionSection"));
-const WhoWeServeSection = lazy(() => import("@/components/sections/WhoWeServeSection"));
-const WhyUsSection = lazy(() => import("@/components/sections/WhyUsSection"));
-const TrustSection = lazy(() => import("@/components/sections/TrustSection"));
-const TeamSection = lazy(() => import("@/components/sections/TeamSection"));
-const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
-const CTASection = lazy(() => import("@/components/sections/CTASection"));
-const FranchiseChatbot = lazy(() => import("@/components/FranchiseChatbot"));
+// Helper for lazy imports with retry logic
+const lazyWithRetry = (componentImport: () => Promise<any>) =>
+  lazy(async () => {
+    try {
+      return await componentImport();
+    } catch (error) {
+      console.error("Failed to load component, retrying...", error);
+      // Wait a bit and retry once
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      return componentImport();
+    }
+  });
+
+// Lazy load below-fold sections with retry logic
+const ProblemSection = lazyWithRetry(() => import("@/components/sections/ProblemSection"));
+const SolutionSection = lazyWithRetry(() => import("@/components/sections/SolutionSection"));
+const WhoWeServeSection = lazyWithRetry(() => import("@/components/sections/WhoWeServeSection"));
+const WhyUsSection = lazyWithRetry(() => import("@/components/sections/WhyUsSection"));
+const TrustSection = lazyWithRetry(() => import("@/components/sections/TrustSection"));
+const TeamSection = lazyWithRetry(() => import("@/components/sections/TeamSection"));
+const ContactSection = lazyWithRetry(() => import("@/components/sections/ContactSection"));
+const CTASection = lazyWithRetry(() => import("@/components/sections/CTASection"));
+const FranchiseChatbot = lazyWithRetry(() => import("@/components/FranchiseChatbot"));
 
 // Minimal loading placeholder
 const SectionLoader = () => (
