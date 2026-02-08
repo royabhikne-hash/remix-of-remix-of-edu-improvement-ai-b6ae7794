@@ -76,8 +76,7 @@ const WhyUsSection = () => {
       <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: reducedMotion ? 0 : 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reducedMotion ? 0.2 : 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
@@ -96,8 +95,7 @@ const WhyUsSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          animate="visible"
           className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
         >
           {reasons.map((reason) => (

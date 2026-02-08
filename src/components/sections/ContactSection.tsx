@@ -112,8 +112,7 @@ const ContactSection = () => {
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
@@ -150,8 +149,7 @@ const ContactSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          animate="visible"
           className="max-w-2xl mx-auto"
         >
           <motion.form

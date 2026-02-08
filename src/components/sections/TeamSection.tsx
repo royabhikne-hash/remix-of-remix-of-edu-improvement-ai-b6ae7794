@@ -147,8 +147,7 @@ const TeamSection = () => {
       <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: reducedMotion ? 0 : 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reducedMotion ? 0.2 : 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
@@ -168,8 +167,7 @@ const TeamSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          animate="visible"
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
         >
           {coreTeam.map((member) => (
@@ -180,8 +178,7 @@ const TeamSection = () => {
         {/* Operations & Ground Team */}
         <motion.div
           initial={{ opacity: 0, y: reducedMotion ? 0 : 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reducedMotion ? 0.2 : 0.6, delay: 0.2 }}
           className="text-center mt-16 mb-10"
         >
@@ -193,8 +190,7 @@ const TeamSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          animate="visible"
           className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto"
         >
           {opsTeam.map((member) => (

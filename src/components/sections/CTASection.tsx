@@ -29,8 +29,7 @@ const CTASection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          animate="visible"
           className="text-center max-w-3xl mx-auto"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mb-4 md:mb-6">
