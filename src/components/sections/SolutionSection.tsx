@@ -65,8 +65,7 @@ const SolutionSection = () => {
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: reducedMotion ? 0 : -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: reducedMotion ? 0.3 : 0.7 }}
           >
             <span className="inline-block text-primary font-medium text-sm uppercase tracking-wide">
@@ -85,8 +84,7 @@ const SolutionSection = () => {
             <motion.div
               variants={containerVariants}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
+              animate="visible"
               className="space-y-6"
             >
               {features.map((feature) => (
@@ -112,8 +110,7 @@ const SolutionSection = () => {
           {/* Visual */}
           <motion.div
             initial={{ opacity: 0, x: reducedMotion ? 0 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: reducedMotion ? 0.3 : 0.8, delay: reducedMotion ? 0 : 0.2 }}
             className="relative"
           >
@@ -152,8 +149,7 @@ const SolutionSection = () => {
                       <div className="h-2 bg-muted rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
-                          whileInView={{ width: `${[85, 72, 90][i]}%` }}
-                          viewport={{ once: true }}
+                          animate={{ width: `${[85, 72, 90][i]}%` }}
                           transition={{ duration: reducedMotion ? 0.3 : 1.2, delay: reducedMotion ? 0 : 0.3 + i * 0.2 }}
                           className="h-full bg-primary rounded-full"
                         />
@@ -176,8 +172,7 @@ const SolutionSection = () => {
             {/* Floating element */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: reducedMotion ? 0 : 0.8 }}
               className="absolute -top-4 -right-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-card text-sm font-medium"
             >
