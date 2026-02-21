@@ -14,9 +14,9 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/franchise-ch
 
 const quickActions = [
   { label: "🎓 About Us", message: "What is Study Buddy AI?" },
-  { label: "📚 Features", message: "What are the main features of your platform?" },
-  { label: "🏫 For Schools", message: "How is this helpful for schools?" },
-  { label: "📞 Contact", message: "How can I contact you?" },
+  { label: "📝 MCQ Tests", message: "Tell me about board-wise MCQ tests and weekly tests" },
+  { label: "🏫 Schools & Coaching", message: "How is this helpful for schools and coaching centers?" },
+  { label: "🏆 Rankings", message: "How does the ranking system work?" },
 ];
 
 const FranchiseChatbot = () => {
@@ -168,10 +168,11 @@ const FranchiseChatbot = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
-            animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-100px)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-48px)] h-[520px] min-h-[400px] max-h-[calc(100vh-100px)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="bg-primary text-primary-foreground p-4 flex items-center justify-between">
