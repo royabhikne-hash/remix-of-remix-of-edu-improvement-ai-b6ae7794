@@ -71,7 +71,7 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <motion.div
-            style={reducedMotion ? undefined : { y: textY, opacity }}
+            style={reducedMotion ? undefined : { y: textY }}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
