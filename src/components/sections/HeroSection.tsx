@@ -91,9 +91,9 @@ const HeroSection = () => {
               variants={itemVariants}
               className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-6 md:mb-8 leading-relaxed"
             >
-              A digital study companion that helps students develop better
-              self-study habits while keeping schools and parents genuinely
-              informed about academic progress.
+              An AI-powered study companion with board-wise MCQ tests, weekly assessments, 
+              and district/school/coaching rankings — helping students build better self-study 
+              habits while keeping schools, coaching centers, and parents informed.
             </motion.p>
 
             <motion.div
