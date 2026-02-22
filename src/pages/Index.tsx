@@ -32,7 +32,7 @@ const TrustSection = lazyWithRetry(() => import("@/components/sections/TrustSect
 const TeamSection = lazyWithRetry(() => import("@/components/sections/TeamSection"));
 const ContactSection = lazyWithRetry(() => import("@/components/sections/ContactSection"));
 const CTASection = lazyWithRetry(() => import("@/components/sections/CTASection"));
-const FranchiseChatbot = lazyWithRetry(() => import("@/components/FranchiseChatbot"));
+import FranchiseChatbot from "@/components/FranchiseChatbot";
 
 // Minimal loading placeholder
 const SectionLoader = () => (
@@ -137,11 +137,7 @@ const Index = () => {
 
         <Footer />
 
-        <AsyncErrorBoundary name="Chat">
-          <Suspense fallback={null}>
-            <FranchiseChatbot />
-          </Suspense>
-        </AsyncErrorBoundary>
+        <FranchiseChatbot />
       </div>
     </>
   );
