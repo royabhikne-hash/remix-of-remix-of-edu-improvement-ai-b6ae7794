@@ -20,7 +20,7 @@ const TeamSection = () => {
       linkedin: "https://www.linkedin.com/in/abhishek-roy-8286663a1",
     },
     {
-      name: "Druva",
+      name: "Druva SM",
       role: "Co-Founder & Chief Technology Officer",
       mission: "Building scalable AI systems that make quality education accessible to every student.",
       image: druvaImage,
