@@ -7,6 +7,8 @@ import druvaImage from "@/assets/druva.jpg";
 import sambharamImage from "@/assets/sambharam.jpg";
 import zulfequarAhmadImage from "@/assets/zulfequar-ahmad.jpg";
 import shivrajYadavImage from "@/assets/shivraj-yadav.jpg";
+import avinavImage from "@/assets/avinav.jpg";
+import rohitChowdhuryImage from "@/assets/rohit-chowdhury.jpg";
 
 const TeamSection = () => {
   const reducedMotion = useReducedMotion();
@@ -35,9 +37,16 @@ const TeamSection = () => {
     },
     {
       name: "Zulfequar Ahmad",
-      role: "Co-Founder & Ground Operations",
+      role: "Co-Founder & Director of Operations (DOO)",
       mission: "Works directly with schools & coaching centers for demos, onboarding, and daily coordination.",
       image: zulfequarAhmadImage,
+      linkedin: "#",
+    },
+    {
+      name: "Avinav Mahato",
+      role: "Co-Founder & Director",
+      mission: "Drives strategic direction and innovation to expand Study Buddy AI's impact across education.",
+      image: avinavImage,
       linkedin: "#",
     },
     {
@@ -45,6 +54,13 @@ const TeamSection = () => {
       role: "Co-Founder & Ground Operations",
       mission: "Manages school & coaching center onboarding strategy, partnerships, and execution on the ground.",
       image: shivrajYadavImage,
+      linkedin: "#",
+    },
+    {
+      name: "Rohit Chowdhury",
+      role: "Co-Founder & Ground Operations",
+      mission: "Leads on-ground outreach and engagement to bring Study Buddy AI to schools and coaching centers.",
+      image: rohitChowdhuryImage,
       linkedin: "#",
     },
   ];
