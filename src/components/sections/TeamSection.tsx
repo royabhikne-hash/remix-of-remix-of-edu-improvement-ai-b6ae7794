@@ -8,7 +8,7 @@ import sambharamImage from "@/assets/sambharam.jpg";
 import zulfequarAhmadImage from "@/assets/zulfequar-ahmad.jpg";
 import shivrajYadavImage from "@/assets/shivraj-yadav.jpg";
 import avinavImage from "@/assets/avinav.jpg";
-import rohitChowdhuryImage from "@/assets/rohit-chowdhury.jpg";
+
 
 const TeamSection = () => {
   const reducedMotion = useReducedMotion();
@@ -60,7 +60,7 @@ const TeamSection = () => {
       name: "Rohit Chowdhury",
       role: "Co-Founder & Ground Operations",
       mission: "Leads on-ground outreach and engagement to bring Study Buddy AI to schools and coaching centers.",
-      image: rohitChowdhuryImage,
+      image: "/placeholder.svg",
       linkedin: "#",
     },
   ];
