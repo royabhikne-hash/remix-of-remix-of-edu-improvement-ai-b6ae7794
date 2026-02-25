@@ -46,10 +46,12 @@ serve(async (req) => {
 
 ## Our Team:
 - Abhishek Roy - Founder & CEO
-- Druva - Co-Founder & CTO
-- Sambharam G - Co-Founder & COO
-- Zulfequar Ahmad - Co-Founder & Ground Operations
+- Druva SM - Co-Founder & Chief Technology Officer (CTO)
+- Sambharam G - Co-Founder & Chief Operating Officer (COO)
+- Zulfequar Ahmad - Co-Founder & Director of Operations (DOO)
+- Avinav Mahato - Co-Founder & Director
 - Shivraj Kumar Yadav - Co-Founder & Ground Operations
+- Rohit Chowdhury - Co-Founder & Ground Operations
 
 ## Current Status:
 - We are in the PRODUCT DEVELOPMENT phase
