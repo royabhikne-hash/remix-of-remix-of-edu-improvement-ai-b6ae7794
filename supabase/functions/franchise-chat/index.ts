@@ -52,6 +52,7 @@ serve(async (req) => {
 - Avinav Mahato - Co-Founder & Managing Director (MD)
 - Shivraj Kumar Yadav - Co-Founder & Director
 - Rohit Chowdhury - Co-Founder & Ground Operations
+- Aditya Paswan - Group Ops Team
 
 ## Current Status:
 - We are in the PRODUCT DEVELOPMENT phase
