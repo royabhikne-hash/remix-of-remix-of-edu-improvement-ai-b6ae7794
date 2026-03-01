@@ -49,8 +49,8 @@ serve(async (req) => {
 - Druva SM - Co-Founder & Chief Technology Officer (CTO)
 - Sambharam G - Co-Founder & Chief Operating Officer (COO)
 - Zulfequar Ahmad - Co-Founder & Director of Operations (DOO)
-- Avinav Mahato - Co-Founder & Director
-- Shivraj Kumar Yadav - Co-Founder & Ground Operations
+- Avinav Mahato - Co-Founder & Managing Director (MD)
+- Shivraj Kumar Yadav - Co-Founder & Director
 - Rohit Chowdhury - Co-Founder & Ground Operations
 
 ## Current Status:

@@ -45,14 +45,14 @@ const TeamSection = () => {
     },
     {
       name: "Avinav Mahato",
-      role: "Co-Founder & Director",
+      role: "Co-Founder & Managing Director (MD)",
       mission: "Drives strategic direction and innovation to expand Study Buddy AI's impact across education.",
       image: avinavImage,
       linkedin: "#",
     },
     {
       name: "Shivraj Kumar Yadav",
-      role: "Co-Founder & Ground Operations",
+      role: "Co-Founder & Director",
       mission: "Manages school & coaching center onboarding strategy, partnerships, and execution on the ground.",
       image: shivrajYadavImage,
       linkedin: "#",
