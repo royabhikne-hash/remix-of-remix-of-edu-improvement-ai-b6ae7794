@@ -9,6 +9,7 @@ import zulfequarAhmadImage from "@/assets/zulfequar-ahmad.jpg";
 import shivrajYadavImage from "@/assets/shivraj-yadav.jpg";
 import avinavImage from "@/assets/avinav.jpg";
 import rohitChowdhuryImage from "@/assets/rohit-chowdhury.jpg";
+import adityaPaswanImage from "@/assets/aditya-paswan.jpg";
 
 
 const TeamSection = () => {
@@ -62,6 +63,13 @@ const TeamSection = () => {
       role: "Co-Founder & Ground Operations",
       mission: "Leads on-ground outreach and engagement to bring Study Buddy AI to schools and coaching centers.",
       image: rohitChowdhuryImage,
+      linkedin: "#",
+    },
+    {
+      name: "Aditya Paswan",
+      role: "Group Ops Team",
+      mission: "Supports group operations and coordination to streamline Study Buddy AI's outreach efforts.",
+      image: adityaPaswanImage,
       linkedin: "#",
     },
   ];
