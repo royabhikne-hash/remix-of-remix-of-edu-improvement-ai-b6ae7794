@@ -8,6 +8,7 @@ import druvaImage from "@/assets/druva.jpg";
 import sambharamImage from "@/assets/sambharam.jpg";
 import zulfequarAhmadImage from "@/assets/zulfequar-ahmad.jpg";
 import adityaPaswanImage from "@/assets/aditya-paswan.jpg";
+import anmolImage from "@/assets/anmol.jpg";
 
 const TeamSection = () => {
   const reducedMotion = useReducedMotion();
