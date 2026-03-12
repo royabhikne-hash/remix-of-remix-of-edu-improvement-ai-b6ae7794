@@ -6,9 +6,6 @@ import abhishekRoyImage from "@/assets/abhishek-roy.jpg";
 import druvaImage from "@/assets/druva.jpg";
 import sambharamImage from "@/assets/sambharam.jpg";
 import zulfequarAhmadImage from "@/assets/zulfequar-ahmad.jpg";
-import shivrajYadavImage from "@/assets/shivraj-yadav.jpg";
-import avinavImage from "@/assets/avinav.jpg";
-import rohitChowdhuryImage from "@/assets/rohit-chowdhury.jpg";
 import adityaPaswanImage from "@/assets/aditya-paswan.jpg";
 
 
@@ -32,37 +29,23 @@ const TeamSection = () => {
     },
     {
       name: "Sambharam G",
-      role: "Co-Founder & Chief Operating Officer",
-      mission: "Leads overall operations, strategic partnerships, and ensures seamless execution across all teams.",
+      role: "Co-Founder & Managing Director (MD)",
+      mission: "Drives strategic direction and innovation to expand Study Buddy AI's impact across education.",
       image: sambharamImage,
       linkedin: "https://www.linkedin.com/in/sambhram-g-b2826b371",
     },
     {
       name: "Zulfequar Ahmad",
-      role: "Co-Founder & Director of Operations (DOO)",
-      mission: "Works directly with schools & coaching centers for demos, onboarding, and daily coordination.",
+      role: "Co-Founder & Chief Operating Officer (COO)",
+      mission: "Leads overall operations, strategic partnerships, and ensures seamless execution across all teams.",
       image: zulfequarAhmadImage,
       linkedin: "#",
     },
     {
-      name: "Avinav Mahato",
-      role: "Co-Founder & Managing Director (MD)",
-      mission: "Drives strategic direction and innovation to expand Study Buddy AI's impact across education.",
-      image: avinavImage,
-      linkedin: "#",
-    },
-    {
-      name: "Shivraj Kumar Yadav",
-      role: "Co-Founder & Director",
-      mission: "Manages school & coaching center onboarding strategy, partnerships, and execution on the ground.",
-      image: shivrajYadavImage,
-      linkedin: "#",
-    },
-    {
-      name: "Rohit Chowdhury",
-      role: "Co-Founder & Ground Operations",
-      mission: "Leads on-ground outreach and engagement to bring Study Buddy AI to schools and coaching centers.",
-      image: rohitChowdhuryImage,
+      name: "Anmol Yadav",
+      role: "Co-Founder & Director of Operations (DOO)",
+      mission: "Works directly with schools & coaching centers for demos, onboarding, and daily coordination.",
+      image: "/placeholder.svg",
       linkedin: "#",
     },
     {
