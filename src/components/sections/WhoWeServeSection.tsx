@@ -60,28 +60,19 @@ const WhoWeServeSection = () => {
   }), [reducedMotion]);
 
   const cardVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: reducedMotion ? 0 : 60, scale: 0.9 },
+    hidden: { opacity: 0, y: reducedMotion ? 0 : 40 },
     visible: {
-      opacity: 1, y: 0, scale: 1,
+      opacity: 1, y: 0,
       transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 
   return (
     <section ref={sectionRef} id="who-we-serve" className="section-padding bg-muted/30 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={reducedMotion ? {} : { x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 12, repeat: Infinity }}
-          className="absolute top-1/4 left-1/3 w-96 h-96 bg-primary/[0.03] rounded-full blur-3xl"
-        />
-        <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      </div>
-
       <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: reducedMotion ? 0 : 30, filter: reducedMotion ? "blur(0px)" : "blur(8px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: reducedMotion ? 0.2 : 0.7 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
@@ -102,7 +93,6 @@ const WhoWeServeSection = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           className="grid md:grid-cols-3 gap-4 md:gap-8"
-          style={{ perspective: "1200px" }}
         >
           {audiences.map((audience) => (
             <motion.div key={audience.title} variants={cardVariants}>
@@ -110,12 +100,9 @@ const WhoWeServeSection = () => {
                 <div className="group glass-strong rounded-xl md:rounded-2xl p-5 md:p-8 shadow-card hover:shadow-elevated transition-all duration-500 relative overflow-hidden h-full">
                   <div className={`absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 ${colorVariants[audience.color].bg} rounded-bl-[100%] opacity-50`} />
 
-                  <motion.div
-                    className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl ${colorVariants[audience.color].bg} ${colorVariants[audience.color].hover} flex items-center justify-center mb-4 md:mb-6 transition-colors duration-300`}
-                    whileHover={reducedMotion ? {} : { scale: 1.15, rotate: 10 }}
-                  >
+                  <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl ${colorVariants[audience.color].bg} ${colorVariants[audience.color].hover} flex items-center justify-center mb-4 md:mb-6 transition-colors duration-300`}>
                     <audience.icon className={`w-6 h-6 md:w-8 md:h-8 ${colorVariants[audience.color].icon}`} />
-                  </motion.div>
+                  </div>
 
                   <h3 className="text-xl md:text-2xl font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
                     {audience.title}

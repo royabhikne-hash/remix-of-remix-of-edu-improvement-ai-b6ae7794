@@ -21,9 +21,9 @@ const SolutionSection = () => {
   }), [reducedMotion]);
 
   const featureVariants = useMemo(() => ({
-    hidden: { opacity: 0, x: reducedMotion ? 0 : -40, filter: reducedMotion ? "blur(0px)" : "blur(6px)" },
+    hidden: { opacity: 0, x: reducedMotion ? 0 : -30 },
     visible: {
-      opacity: 1, x: 0, filter: "blur(0px)",
+      opacity: 1, x: 0,
       transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
@@ -35,7 +35,7 @@ const SolutionSection = () => {
       <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: reducedMotion ? 0 : -50 }}
+            initial={{ opacity: 0, x: reducedMotion ? 0 : -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: reducedMotion ? 0.3 : 0.7 }}
           >
@@ -54,12 +54,9 @@ const SolutionSection = () => {
             <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="space-y-6">
               {features.map((feature) => (
                 <motion.div key={feature.title} variants={featureVariants} className="flex gap-4 group">
-                  <motion.div
-                    className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors duration-300"
-                    whileHover={reducedMotion ? {} : { scale: 1.15, rotate: 5 }}
-                  >
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors duration-300">
                     <feature.icon className="w-6 h-6 text-primary" />
-                  </motion.div>
+                  </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                       {feature.title}
@@ -71,37 +68,23 @@ const SolutionSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Dashboard Visual with 3D effect */}
+          {/* Dashboard Visual */}
           <motion.div
-            initial={{ opacity: 0, x: reducedMotion ? 0 : 50, rotateY: reducedMotion ? 0 : 15 }}
-            animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
+            initial={{ opacity: 0, x: reducedMotion ? 0 : 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: reducedMotion ? 0.3 : 1, delay: reducedMotion ? 0 : 0.2, ease: [0.25, 0.4, 0.25, 1] as const }}
             className="relative"
-            style={{ perspective: "1200px" }}
-            whileHover={reducedMotion ? {} : { rotateY: -5, scale: 1.02, transition: { duration: 0.4 } }}
           >
             <div className="relative glass-strong rounded-2xl p-8 shadow-elevated">
-              <div className="absolute inset-0 opacity-5 rounded-2xl overflow-hidden">
-                <div className="grid grid-cols-4 gap-4 h-full">
-                  {Array.from({ length: 8 }).map((_, i) => (
-                    <div key={i} className="border-r border-foreground" />
-                  ))}
-                </div>
-              </div>
-
               <div className="relative z-10 space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-border">
                   <div>
                     <p className="text-sm text-muted-foreground">Study Progress</p>
                     <p className="text-2xl font-heading text-foreground">This Week</p>
                   </div>
-                  <motion.div
-                    className="w-16 h-16 rounded-full border-4 border-primary bg-primary/10 flex items-center justify-center"
-                    animate={reducedMotion ? {} : { rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
+                  <div className="w-16 h-16 rounded-full border-4 border-primary bg-primary/10 flex items-center justify-center">
                     <span className="text-xl font-bold text-primary">78%</span>
-                  </motion.div>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -124,15 +107,12 @@ const SolutionSection = () => {
                   ))}
                 </div>
 
-                <motion.div
-                  className="bg-primary-light rounded-xl p-4 mt-6"
-                  whileHover={reducedMotion ? {} : { scale: 1.02 }}
-                >
+                <div className="bg-primary-light rounded-xl p-4 mt-6">
                   <p className="text-sm font-medium text-primary">Weekly Insight</p>
                   <p className="text-foreground mt-1">
                     Focus improved by 15% compared to last week. Great progress in Mathematics!
                   </p>
-                </motion.div>
+                </div>
               </div>
             </div>
 
@@ -141,7 +121,6 @@ const SolutionSection = () => {
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: reducedMotion ? 0 : 0.8 }}
               className="absolute -top-4 -right-4 glass-strong px-4 py-2 rounded-lg shadow-lg text-sm font-medium"
-              whileHover={reducedMotion ? {} : { scale: 1.1, y: -3 }}
             >
               <span className="gradient-text">Real-time Updates ✓</span>
             </motion.div>

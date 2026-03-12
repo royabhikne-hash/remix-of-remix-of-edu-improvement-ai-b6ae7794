@@ -24,28 +24,19 @@ const WhyUsSection = () => {
   }), [reducedMotion]);
 
   const cardVariants = useMemo(() => ({
-    hidden: { opacity: 0, scale: 0.85, y: reducedMotion ? 0 : 30, filter: reducedMotion ? "blur(0px)" : "blur(6px)" },
+    hidden: { opacity: 0, y: reducedMotion ? 0 : 20 },
     visible: {
-      opacity: 1, scale: 1, y: 0, filter: "blur(0px)",
+      opacity: 1, y: 0,
       transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 
   return (
     <section ref={sectionRef} id="why-us" className="section-padding relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={reducedMotion ? {} : { scale: [1, 1.3, 1] }}
-          transition={{ duration: 10, repeat: Infinity }}
-          className="absolute top-1/3 right-1/4 w-72 h-72 bg-primary/[0.03] rounded-full blur-3xl"
-        />
-        <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl" />
-      </div>
-
       <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: reducedMotion ? 0 : 30, filter: reducedMotion ? "blur(0px)" : "blur(8px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: reducedMotion ? 0.2 : 0.7 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
@@ -66,18 +57,14 @@ const WhyUsSection = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
-          style={{ perspective: "1200px" }}
         >
           {reasons.map((reason) => (
             <motion.div key={reason.title} variants={cardVariants}>
               <TiltCard className="h-full" maxTilt={10}>
                 <div className="group glass-strong rounded-lg md:rounded-xl p-4 md:p-6 hover:shadow-card transition-all duration-500 h-full">
-                  <motion.div
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-3 md:mb-4 transition-colors"
-                    whileHover={reducedMotion ? {} : { scale: 1.2, rotate: -10 }}
-                  >
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-3 md:mb-4 transition-colors">
                     <reason.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
-                  </motion.div>
+                  </div>
                   <h3 className="text-sm md:text-lg font-semibold text-foreground mb-1 md:mb-2 group-hover:text-primary transition-colors">
                     {reason.title}
                   </h3>
