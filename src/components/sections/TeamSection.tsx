@@ -20,7 +20,7 @@ const TeamSection = () => {
     { name: "Druva SM", role: "Co-Founder & Chief Technology Officer", mission: "Building scalable AI systems that make quality education accessible to every student.", image: druvaImage, linkedin: "#" },
     { name: "Sambharam G", role: "Co-Founder & Managing Director (MD)", mission: "Drives strategic direction and innovation to expand Study Buddy AI's impact across education.", image: sambharamImage, linkedin: "https://www.linkedin.com/in/sambhram-g-b2826b371" },
     { name: "Zulfequar Ahmad", role: "Co-Founder & Chief Operating Officer (COO)", mission: "Leads overall operations, strategic partnerships, and ensures seamless execution across all teams.", image: zulfequarAhmadImage, linkedin: "#" },
-    { name: "Anmol Yadav", role: "Co-Founder & Director of Operations (DOO)", mission: "Works directly with schools & coaching centers for demos, onboarding, and daily coordination.", image: "/placeholder.svg", linkedin: "#" },
+    { name: "Anmol Yadav", role: "Co-Founder & Director of Operations (DOO)", mission: "Works directly with schools & coaching centers for demos, onboarding, and daily coordination.", image: anmolImage, linkedin: "#" },
     { name: "Aditya Paswan", role: "Group Ops Team", mission: "Supports group operations and coordination to streamline Study Buddy AI's outreach efforts.", image: adityaPaswanImage, linkedin: "#" },
   ];
 
