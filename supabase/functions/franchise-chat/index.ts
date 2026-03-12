@@ -47,11 +47,9 @@ serve(async (req) => {
 ## Our Team:
 - Abhishek Roy - Founder & CEO
 - Druva SM - Co-Founder & Chief Technology Officer (CTO)
-- Sambharam G - Co-Founder & Chief Operating Officer (COO)
-- Zulfequar Ahmad - Co-Founder & Director of Operations (DOO)
-- Avinav Mahato - Co-Founder & Managing Director (MD)
-- Shivraj Kumar Yadav - Co-Founder & Director
-- Rohit Chowdhury - Co-Founder & Ground Operations
+- Sambharam G - Co-Founder & Managing Director (MD)
+- Zulfequar Ahmad - Co-Founder & Chief Operating Officer (COO)
+- Anmol Yadav - Co-Founder & Director of Operations (DOO)
 - Aditya Paswan - Group Ops Team
 
 ## Current Status:
