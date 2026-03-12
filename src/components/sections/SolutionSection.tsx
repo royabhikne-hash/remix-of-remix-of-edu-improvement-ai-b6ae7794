@@ -75,7 +75,7 @@ const SolutionSection = () => {
           <motion.div
             initial={{ opacity: 0, x: reducedMotion ? 0 : 50, rotateY: reducedMotion ? 0 : 15 }}
             animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
-            transition={{ duration: reducedMotion ? 0.3 : 1, delay: reducedMotion ? 0 : 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: reducedMotion ? 0.3 : 1, delay: reducedMotion ? 0 : 0.2, ease: [0.25, 0.4, 0.25, 1] as const }}
             className="relative"
             style={{ perspective: "1200px" }}
             whileHover={reducedMotion ? {} : { rotateY: -5, scale: 1.02, transition: { duration: 0.4 } }}
