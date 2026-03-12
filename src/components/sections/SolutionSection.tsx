@@ -24,7 +24,7 @@ const SolutionSection = () => {
     hidden: { opacity: 0, x: reducedMotion ? 0 : -40, filter: reducedMotion ? "blur(0px)" : "blur(6px)" },
     visible: {
       opacity: 1, x: 0, filter: "blur(0px)",
-      transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 
