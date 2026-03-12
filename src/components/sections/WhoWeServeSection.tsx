@@ -1,10 +1,13 @@
-import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { motion, useInView } from "framer-motion";
+import { useMemo, useRef } from "react";
 import { GraduationCap, School, Users, Check } from "lucide-react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import TiltCard from "@/components/ui/TiltCard";
 
 const WhoWeServeSection = () => {
   const reducedMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   const audiences = [
     {
@@ -46,61 +49,40 @@ const WhoWeServeSection = () => {
   ];
 
   const colorVariants = {
-    primary: {
-      bg: "bg-primary/10",
-      icon: "text-primary",
-      check: "text-primary",
-      hover: "group-hover:bg-primary/20",
-    },
-    accent: {
-      bg: "bg-accent/10",
-      icon: "text-accent",
-      check: "text-accent",
-      hover: "group-hover:bg-accent/20",
-    },
-    secondary: {
-      bg: "bg-secondary/20",
-      icon: "text-secondary",
-      check: "text-secondary",
-      hover: "group-hover:bg-secondary/30",
-    },
+    primary: { bg: "bg-primary/10", icon: "text-primary", check: "text-primary", hover: "group-hover:bg-primary/20" },
+    accent: { bg: "bg-accent/10", icon: "text-accent", check: "text-accent", hover: "group-hover:bg-accent/20" },
+    secondary: { bg: "bg-secondary/20", icon: "text-secondary", check: "text-secondary", hover: "group-hover:bg-secondary/30" },
   };
 
   const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: reducedMotion ? 0 : 0.15,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: reducedMotion ? 0 : 0.2 } },
   }), [reducedMotion]);
 
   const cardVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: reducedMotion ? 0 : 50 },
+    hidden: { opacity: 0, y: reducedMotion ? 0 : 60, scale: 0.9 },
     visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: reducedMotion ? 0.2 : 0.6 },
+      opacity: 1, y: 0, scale: 1,
+      transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 
   return (
-    <section
-      id="who-we-serve"
-      className="section-padding bg-muted/30 relative overflow-hidden"
-    >
-      {/* Static Background */}
+    <section ref={sectionRef} id="who-we-serve" className="section-padding bg-muted/30 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-primary/3 rounded-full blur-3xl" />
+        <motion.div
+          animate={reducedMotion ? {} : { x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 12, repeat: Infinity }}
+          className="absolute top-1/4 left-1/3 w-96 h-96 bg-primary/[0.03] rounded-full blur-3xl"
+        />
         <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
       </div>
 
       <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: reducedMotion ? 0 : 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reducedMotion ? 0.2 : 0.6 }}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 30, filter: reducedMotion ? "blur(0px)" : "blur(8px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: reducedMotion ? 0.2 : 0.7 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <span className="inline-block text-primary font-medium text-xs md:text-sm uppercase tracking-wide">
@@ -118,46 +100,38 @@ const WhoWeServeSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={isInView ? "visible" : "hidden"}
           className="grid md:grid-cols-3 gap-4 md:gap-8"
+          style={{ perspective: "1200px" }}
         >
-          {audiences.map((audience, index) => (
-            <motion.div
-              key={audience.title}
-              variants={cardVariants}
-              className="group bg-card rounded-xl md:rounded-2xl p-5 md:p-8 shadow-card border border-border/50 hover:shadow-elevated hover:border-primary/20 transition-all duration-300 relative overflow-hidden"
-            >
-              {/* Decorative corner */}
-              <div
-                className={`absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 ${colorVariants[audience.color].bg} rounded-bl-[100%] opacity-50`}
-              />
+          {audiences.map((audience) => (
+            <motion.div key={audience.title} variants={cardVariants}>
+              <TiltCard className="h-full">
+                <div className="group glass-strong rounded-xl md:rounded-2xl p-5 md:p-8 shadow-card hover:shadow-elevated transition-all duration-500 relative overflow-hidden h-full">
+                  <div className={`absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 ${colorVariants[audience.color].bg} rounded-bl-[100%] opacity-50`} />
 
-              <div
-                className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl ${colorVariants[audience.color].bg} ${colorVariants[audience.color].hover} flex items-center justify-center mb-4 md:mb-6 transition-colors duration-300`}
-              >
-                <audience.icon
-                  className={`w-6 h-6 md:w-8 md:h-8 ${colorVariants[audience.color].icon}`}
-                />
-              </div>
-
-              <h3 className="text-xl md:text-2xl font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
-                {audience.title}
-              </h3>
-              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">{audience.description}</p>
-
-              <ul className="space-y-2 md:space-y-3">
-                {audience.benefits.map((benefit) => (
-                  <li
-                    key={benefit}
-                    className="flex items-start gap-2 md:gap-3"
+                  <motion.div
+                    className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl ${colorVariants[audience.color].bg} ${colorVariants[audience.color].hover} flex items-center justify-center mb-4 md:mb-6 transition-colors duration-300`}
+                    whileHover={reducedMotion ? {} : { scale: 1.15, rotate: 10 }}
                   >
-                    <Check
-                      className={`w-4 h-4 md:w-5 md:h-5 mt-0.5 flex-shrink-0 ${colorVariants[audience.color].check}`}
-                    />
-                    <span className="text-sm md:text-base text-foreground/90">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
+                    <audience.icon className={`w-6 h-6 md:w-8 md:h-8 ${colorVariants[audience.color].icon}`} />
+                  </motion.div>
+
+                  <h3 className="text-xl md:text-2xl font-heading text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {audience.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">{audience.description}</p>
+
+                  <ul className="space-y-2 md:space-y-3">
+                    {audience.benefits.map((benefit) => (
+                      <li key={benefit} className="flex items-start gap-2 md:gap-3">
+                        <Check className={`w-4 h-4 md:w-5 md:h-5 mt-0.5 flex-shrink-0 ${colorVariants[audience.color].check}`} />
+                        <span className="text-sm md:text-base text-foreground/90">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>
