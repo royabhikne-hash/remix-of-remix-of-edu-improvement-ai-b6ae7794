@@ -39,7 +39,7 @@ const HeroSection = () => {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { duration: reducedMotion ? 0.2 : 0.8, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { duration: reducedMotion ? 0.2 : 0.8, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 
