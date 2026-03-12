@@ -47,7 +47,7 @@ const ProblemSection = () => {
       opacity: 1,
       y: 0,
       rotateX: 0,
-      transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 

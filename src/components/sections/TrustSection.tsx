@@ -24,7 +24,7 @@ const TrustSection = () => {
     hidden: { opacity: 0, x: reducedMotion ? 0 : -50, rotateY: reducedMotion ? 0 : -10 },
     visible: {
       opacity: 1, x: 0, rotateY: 0,
-      transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 

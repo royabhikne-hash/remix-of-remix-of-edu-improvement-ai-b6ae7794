@@ -115,7 +115,7 @@ const SolutionSection = () => {
                         <motion.div
                           initial={{ width: 0 }}
                           animate={isInView ? { width: `${[85, 72, 90][i]}%` } : {}}
-                          transition={{ duration: reducedMotion ? 0.3 : 1.5, delay: reducedMotion ? 0 : 0.5 + i * 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+                          transition={{ duration: reducedMotion ? 0.3 : 1.5, delay: reducedMotion ? 0 : 0.5 + i * 0.2, ease: [0.25, 0.4, 0.25, 1] as const }}
                           className="h-full rounded-full"
                           style={{ background: "var(--gradient-primary)" }}
                         />

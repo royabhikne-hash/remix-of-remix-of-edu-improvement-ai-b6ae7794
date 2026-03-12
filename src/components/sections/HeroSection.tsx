@@ -169,7 +169,7 @@ const HeroSection = () => {
             style={reducedMotion ? undefined : { y: imageY, rotateY: imageRotateY }}
             initial={{ opacity: 0, scale: 0.9, x: reducedMotion ? 0 : 60, rotateY: reducedMotion ? 0 : 10 }}
             animate={{ opacity: 1, scale: 1, x: 0, rotateY: 0 }}
-            transition={{ duration: reducedMotion ? 0.3 : 1, delay: reducedMotion ? 0 : 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: reducedMotion ? 0.3 : 1, delay: reducedMotion ? 0 : 0.3, ease: [0.25, 0.4, 0.25, 1] as const }}
             className="relative"
             whileHover={reducedMotion ? {} : { scale: 1.02, rotateY: -3, transition: { duration: 0.3 } }}
           >

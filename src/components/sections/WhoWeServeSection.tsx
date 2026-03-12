@@ -63,7 +63,7 @@ const WhoWeServeSection = () => {
     hidden: { opacity: 0, y: reducedMotion ? 0 : 60, scale: 0.9 },
     visible: {
       opacity: 1, y: 0, scale: 1,
-      transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 

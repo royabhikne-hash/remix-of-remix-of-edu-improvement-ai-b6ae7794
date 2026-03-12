@@ -38,7 +38,7 @@ const CTASection = () => {
         <motion.div
           initial={{ opacity: 0, y: reducedMotion ? 0 : 40, scale: 0.95 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: reducedMotion ? 0.2 : 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: reducedMotion ? 0.2 : 0.8, ease: [0.25, 0.4, 0.25, 1] as const }}
           className="text-center max-w-3xl mx-auto"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-foreground mb-4 md:mb-6">

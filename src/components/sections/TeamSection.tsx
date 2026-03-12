@@ -32,7 +32,7 @@ const TeamSection = () => {
     hidden: { opacity: 0, y: reducedMotion ? 0 : 50, scale: 0.9, filter: reducedMotion ? "blur(0px)" : "blur(6px)" },
     visible: {
       opacity: 1, y: 0, scale: 1, filter: "blur(0px)",
-      transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 

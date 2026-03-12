@@ -101,7 +101,7 @@ const ContactSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.95 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] as const }}
           className="max-w-2xl mx-auto"
         >
           <form

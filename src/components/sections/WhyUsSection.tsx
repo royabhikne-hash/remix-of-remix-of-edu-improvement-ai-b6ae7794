@@ -27,7 +27,7 @@ const WhyUsSection = () => {
     hidden: { opacity: 0, scale: 0.85, y: reducedMotion ? 0 : 30, filter: reducedMotion ? "blur(0px)" : "blur(6px)" },
     visible: {
       opacity: 1, scale: 1, y: 0, filter: "blur(0px)",
-      transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 
