@@ -42,11 +42,10 @@ const ProblemSection = () => {
   }), [reducedMotion]);
 
   const cardVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: reducedMotion ? 0 : 60, rotateX: reducedMotion ? 0 : 10 },
+    hidden: { opacity: 0, y: reducedMotion ? 0 : 40 },
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
       transition: { duration: reducedMotion ? 0.2 : 0.7, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
@@ -57,19 +56,22 @@ const ProblemSection = () => {
       id="problem"
       className="section-padding bg-muted/50 relative overflow-hidden"
     >
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <motion.div
-          animate={reducedMotion ? {} : { scale: [1, 1.2, 1], opacity: [0.03, 0.06, 0.03] }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute top-20 left-1/4 w-64 h-64 bg-primary rounded-full blur-3xl opacity-[0.03]"
-        />
-        <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl" />
-      </div>
+      {/* Background decorations — desktop only */}
+      {!reducedMotion && (
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <motion.div
+            animate={{ scale: [1, 1.2, 1], opacity: [0.03, 0.06, 0.03] }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute top-20 left-1/4 w-64 h-64 bg-primary rounded-full blur-3xl opacity-[0.03]"
+          />
+          <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl" />
+        </div>
+      )}
 
       <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: reducedMotion ? 0 : 30, filter: reducedMotion ? "blur(0px)" : "blur(8px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: reducedMotion ? 0.2 : 0.7 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
@@ -91,19 +93,14 @@ const ProblemSection = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           className="grid md:grid-cols-3 gap-4 md:gap-8"
-          style={{ perspective: "1200px" }}
         >
-          {problems.map((problem, i) => (
+          {problems.map((problem) => (
             <motion.div key={problem.title} variants={cardVariants}>
               <TiltCard className="h-full">
                 <div className="group glass-strong rounded-xl md:rounded-2xl p-5 md:p-8 shadow-card hover:shadow-elevated transition-all duration-500 h-full">
-                  <motion.div
-                    className="icon-container mb-4 md:mb-6 w-12 h-12 md:w-14 md:h-14"
-                    whileHover={reducedMotion ? {} : { rotate: [0, -10, 10, 0], scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
+                  <div className="icon-container mb-4 md:mb-6 w-12 h-12 md:w-14 md:h-14">
                     <problem.icon className="w-6 h-6 md:w-7 md:h-7" />
-                  </motion.div>
+                  </div>
                   <h3 className="text-lg md:text-xl font-heading text-foreground mb-2 md:mb-3 group-hover:text-primary transition-colors">
                     {problem.title}
                   </h3>

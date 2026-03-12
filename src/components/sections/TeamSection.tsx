@@ -21,8 +21,8 @@ const TeamSection = () => {
     { name: "Sambharam G", role: "Co-Founder & Managing Director (MD)", mission: "Drives strategic direction and innovation to expand Study Buddy AI's impact across education.", image: sambharamImage, linkedin: "https://www.linkedin.com/in/sambhram-g-b2826b371" },
     { name: "Zulfequar Ahmad", role: "Co-Founder & Chief Operating Officer (COO)", mission: "Leads overall operations, strategic partnerships, and ensures seamless execution across all teams.", image: zulfequarAhmadImage, linkedin: "#" },
     { name: "Anmol Yadav", role: "Co-Founder & Director of Operations (DOO)", mission: "Works directly with schools & coaching centers for demos, onboarding, and daily coordination.", image: anmolImage, linkedin: "#" },
-    { name: "Aditya Paswan", role: "Group Ops Team", mission: "Supports group operations and coordination to streamline Study Buddy AI's outreach efforts.", image: adityaPaswanImage, linkedin: "#" },
     { name: "Priyanka", role: "Chief Marketing Officer (CMO)", mission: "Leads marketing strategy and brand growth to expand Study Buddy AI's reach across educational institutions.", image: "/placeholder.svg", linkedin: "#" },
+    { name: "Aditya Paswan", role: "Group Ops Team", mission: "Supports group operations and coordination to streamline Study Buddy AI's outreach efforts.", image: adityaPaswanImage, linkedin: "#" },
   ];
 
   const containerVariants = useMemo(() => ({
@@ -31,28 +31,19 @@ const TeamSection = () => {
   }), [reducedMotion]);
 
   const cardVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: reducedMotion ? 0 : 50, scale: 0.9, filter: reducedMotion ? "blur(0px)" : "blur(6px)" },
+    hidden: { opacity: 0, y: reducedMotion ? 0 : 30 },
     visible: {
-      opacity: 1, y: 0, scale: 1, filter: "blur(0px)",
+      opacity: 1, y: 0,
       transition: { duration: reducedMotion ? 0.2 : 0.6, ease: [0.25, 0.4, 0.25, 1] as const },
     },
   }), [reducedMotion]);
 
   return (
     <section ref={sectionRef} id="team" className="section-padding bg-muted/30 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={reducedMotion ? {} : { rotate: [0, 360] }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 right-1/4 w-72 h-72 bg-primary/[0.03] rounded-full blur-3xl"
-        />
-        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl" />
-      </div>
-
       <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: reducedMotion ? 0 : 30, filter: reducedMotion ? "blur(0px)" : "blur(8px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: reducedMotion ? 0.2 : 0.7 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
@@ -72,32 +63,28 @@ const TeamSection = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto"
-          style={{ perspective: "1200px" }}
         >
           {team.map((member) => (
             <motion.div key={member.name} variants={cardVariants}>
               <TiltCard className="text-center" maxTilt={8}>
                 <div className="group">
                   <div className="relative mb-3 md:mb-6 overflow-hidden rounded-xl md:rounded-2xl">
-                    <motion.img
+                    <img
                       src={member.image}
                       alt={member.name}
                       className="w-full aspect-square object-cover"
                       loading="lazy"
-                      whileHover={reducedMotion ? {} : { scale: 1.08 }}
-                      transition={{ duration: 0.5 }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-4">
-                      <motion.a
+                      <a
                         href={member.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-10 h-10 glass-strong rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary-foreground/30 transition-colors"
                         aria-label={`${member.name}'s LinkedIn`}
-                        whileHover={reducedMotion ? {} : { scale: 1.2, rotate: 5 }}
                       >
                         <Linkedin size={18} />
-                      </motion.a>
+                      </a>
                     </div>
                   </div>
                   <h3 className="text-base md:text-xl font-heading text-foreground mb-0.5 md:mb-1 group-hover:text-primary transition-colors">
