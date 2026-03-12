@@ -50,6 +50,7 @@ serve(async (req) => {
 - Sambharam G - Co-Founder & Managing Director (MD)
 - Zulfequar Ahmad - Co-Founder & Chief Operating Officer (COO)
 - Anmol Yadav - Co-Founder & Director of Operations (DOO)
+- Priyanka - Chief Marketing Officer (CMO)
 - Aditya Paswan - Group Ops Team
 
 ## Current Status:

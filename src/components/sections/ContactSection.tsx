@@ -83,9 +83,6 @@ const ContactSection = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-6 text-muted-foreground">
-            <motion.a href="tel:+917091165195" className="flex items-center gap-2 hover:text-primary transition-colors" whileHover={{ scale: 1.05 }}>
-              <Phone className="w-5 h-5" /><span>+91 7091165195</span>
-            </motion.a>
             <motion.a href="tel:+919155352921" className="flex items-center gap-2 hover:text-primary transition-colors" whileHover={{ scale: 1.05 }}>
               <Phone className="w-5 h-5" /><span>+91 9155352921</span>
             </motion.a>
