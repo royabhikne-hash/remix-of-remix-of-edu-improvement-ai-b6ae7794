@@ -8,6 +8,7 @@ import { Send, Mail, MessageSquare, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -20,6 +21,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const reducedMotion = useReducedMotion();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
@@ -67,8 +69,8 @@ const ContactSection = () => {
     <section ref={sectionRef} id="contact" className="section-padding bg-gradient-to-b from-background to-primary-light/30">
       <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
@@ -83,12 +85,12 @@ const ContactSection = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-6 text-muted-foreground">
-            <motion.a href="tel:+919155352921" className="flex items-center gap-2 hover:text-primary transition-colors" whileHover={{ scale: 1.05 }}>
+            <a href="tel:+919155352921" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Phone className="w-5 h-5" /><span>+91 9155352921</span>
-            </motion.a>
-            <motion.a href="mailto:royabhikne@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors" whileHover={{ scale: 1.05 }}>
+            </a>
+            <a href="mailto:royabhikne@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Mail className="w-5 h-5" /><span>royabhikne@gmail.com</span>
-            </motion.a>
+            </a>
             <div className="flex items-center gap-2">
               <MapPin className="w-5 h-5" /><span>Kishanganj, Bihar, India</span>
             </div>
@@ -96,8 +98,8 @@ const ContactSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] as const }}
           className="max-w-2xl mx-auto"
         >
@@ -131,11 +133,9 @@ const ContactSection = () => {
               {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
             </div>
 
-            <motion.div whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
-              <Button type="submit" variant="hero" size="xl" className="w-full shadow-glow" disabled={isSubmitting}>
-                {isSubmitting ? "Submitting..." : (<><Send className="w-5 h-5" />Submit Inquiry</>)}
-              </Button>
-            </motion.div>
+            <Button type="submit" variant="hero" size="xl" className="w-full shadow-glow" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : (<><Send className="w-5 h-5" />Submit Inquiry</>)}
+            </Button>
 
             <p className="text-center text-sm text-muted-foreground">
               We typically respond within 24 hours on business days.
